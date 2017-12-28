@@ -1,0 +1,33 @@
+body {
+	/*background-color: #005*/
+}
+
+.alive {
+	background-color: black;
+	/*color: black;*/
+}
+
+.dead {
+	background-color: white;
+	/*color: white;*/
+}
+
+
+.cell {
+	height: 8px;
+	width: 8px;
+}
+
+td {
+	/*border: 1px solid #EEE;*/
+
+}
+
+.edit {
+	border: 0.5px solid #EEE;
+}
+
+.edit:hover {
+	cursor: pointer;
+	background-color: #DDF
+}

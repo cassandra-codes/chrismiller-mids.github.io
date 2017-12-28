@@ -1,0 +1,68 @@
+<div ng-controller="sidebarCtrl as vm">
+	<table class="table table-default">
+		<h2>Conway's Game of Life</h2>
+		<thead>
+			<th>Controls</th><th></th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<form ng-submit="vm.play()">
+						<button type="submit" class="btn btn-default">{{ vm.runText }}</button>
+					</form>
+				</td><td></td>
+			</tr>
+			<tr>
+				<td>
+					<form ng-submit="vm.edit()">
+						<button type="submit" class="btn btn-default">Edit</button>
+					</form>
+				</td><td></td>
+			</tr>
+			<tr>
+				<td>
+					<form ng-submit="vm.random()">
+						<button type="submit" class="btn btn-default">Randomize</button>
+					</form>
+				</td>
+				<td>
+					<form ng-submit="vm.clear()">
+						<button type="submit" class="btn btn-default">Clear</button>
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Starvation:
+				</td>
+				<td>
+					Fewer than <input type="number" name="starve" min="0" max="{{vm.reproduceValue}}" ng-change="vm.starve()"
+					ng-model="vm.starveValue"> neighbors
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Reproduction:
+				</td>
+				<td>Exactly <input type="number" name="reproduce" min="{{vm.starveValue}}" max="{{vm.overpopulateValue}}" ng-change="vm.reproduce()" ng-model="vm.reproduceValue"> neighbors
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Overpopulation:
+				</td>
+				<td>
+					More than <input type="number" name="overpopulate" min="{{vm.reproduceValue}}" max="8" ng-change="vm.overpopulate()" ng-model="vm.overpopulateValue"> neighbors
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Wrap:
+				</td> 
+				<td>
+					<input class="checkbox" type="checkbox" ng-model="vm.wrap" ng-init="checked=true" ng-change="vm.setWrap()">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

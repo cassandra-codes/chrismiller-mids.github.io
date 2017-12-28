@@ -1,0 +1,10 @@
+<table class="" ng-controller="gridCtrl as vm">
+	<tbody>
+		<tr ng-repeat="row in vm.rows track by $index">
+			<td ng-repeat="cell in row track by $index">
+				<div class="cell" ng-class="{alive: cell==1, dead: cell==0, edit: vm.editMode==true}" 
+				ng-click="vm.edit(this.$parent.$index, this.$index)">&nbsp</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
