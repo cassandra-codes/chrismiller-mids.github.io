@@ -26,10 +26,15 @@
 					</form>
 				</td>
 				<td>
+					<input type="range" min="1" max="99" value="25" class="slider" ng-model="vm.ratio" ng-change="vm.setRatio()">
+				</td>
+			</tr>
+			<tr>
+				<td>
 					<form ng-submit="vm.clear()">
 						<button type="submit" class="btn btn-default">Clear</button>
 					</form>
-				</td>
+				</td><td></td>
 			</tr>
 			<tr>
 				<td>

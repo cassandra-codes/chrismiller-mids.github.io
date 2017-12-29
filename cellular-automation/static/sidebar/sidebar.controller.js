@@ -9,6 +9,8 @@ angular.module('sidebar').controller('sidebarCtrl', function(gridService) {
 	vm.running = false;
 	vm.runText = "Start";
 
+	vm.ratio = 0.25;
+
 	vm.play = function() {
 		vm.running = !vm.running;
 		if (vm.running) {
@@ -49,6 +51,11 @@ angular.module('sidebar').controller('sidebarCtrl', function(gridService) {
 
 	vm.setWrap = function() {
 		gridService.setWrap(vm.wrap);
+	}
+
+	vm.setRatio = function() {
+		gridService.setRatio(vm.ratio * 0.01);
+		gridService.init();
 	}
 
 });

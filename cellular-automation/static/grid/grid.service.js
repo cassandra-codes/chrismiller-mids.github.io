@@ -10,6 +10,7 @@ angular.module('grid').service('gridService', function() {
 	var starve = 2;
 	var overpopulate = 3;
 	var reproduce = 3;
+	var ratio = 0.25;
 
 
 	generate = function() {
@@ -89,7 +90,7 @@ angular.module('grid').service('gridService', function() {
 			cells.push([]);
 			neighbors.push([]);
 			for (var j = 0; j < column_size; j++) {
-				cells[i].push(Math.floor(Math.random() * 2));
+				cells[i].push(Math.random() <= ratio ? 1 : 0)
 				neighbors[i].push(0); 
 			}
 		}
@@ -144,6 +145,10 @@ angular.module('grid').service('gridService', function() {
 		wrap = value;
 	}
 
+	setRatio = function(value) {
+		ratio = value;
+	}
+
 	return {
 		row_size: row_size,
 		column_size: column_size,
@@ -161,7 +166,8 @@ angular.module('grid').service('gridService', function() {
 		setStarve: setStarve,
 		setReproduce: setReproduce,
 		setOverpopulate: setOverpopulate,
-		setWrap: setWrap
+		setWrap: setWrap,
+		setRatio: setRatio
 	}
 
 });
