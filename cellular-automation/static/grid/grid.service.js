@@ -3,15 +3,23 @@ angular.module('grid').service('gridService', function() {
 	var run = false;
 	var cells = [];
 	var neighbors = [];
-	var row_size = 100;
+	var row_size = 150;
+	var column_size = 150;
 	var wrap = true;
-	var column_size = 100;
 	var editMode = true;
 	var starve = 2;
 	var overpopulate = 3;
 	var reproduce = 3;
 	var ratio = 0.25;
+	var rules = [];
 
+	for (var i = 0; i < 9; i++) {
+		rules.push({"birth": false, "survive": false});
+	}
+
+	rules[2]["survive"] = true
+	rules[3]["survive"] = true
+	rules[3]["birth"] = true
 
 	generate = function() {
 		if (run) {
@@ -58,14 +66,11 @@ angular.module('grid').service('gridService', function() {
 			for (var i = 0; i < row_size; i++) {
 				for (var j = 0; j < row_size; j++) {
 					if (cells[i][j] == 1) {
-						if (neighbors[i][j] < starve) {
-							cells[i][j] = 0;
-						}
-						else if (neighbors[i][j] > overpopulate) {
+						if (!rules[neighbors[i][j]]['survive']) {
 							cells[i][j] = 0;
 						}
 					} else {
-						if (neighbors[i][j] == reproduce) {
+						if (rules[neighbors[i][j]]['birth']) {
 							cells[i][j] = 1
 						}
 					}
@@ -83,7 +88,6 @@ angular.module('grid').service('gridService', function() {
 	}
 
 	init = function() {
-		console.log('init')
 		cells = [];
 		neighbors = [];
 		for (var i = 0; i < row_size; i++) {
@@ -149,6 +153,11 @@ angular.module('grid').service('gridService', function() {
 		ratio = value;
 	}
 
+	setRules = function(value) {
+		console.log(value)
+		rules = value;
+	}
+
 	return {
 		row_size: row_size,
 		column_size: column_size,
@@ -167,7 +176,8 @@ angular.module('grid').service('gridService', function() {
 		setReproduce: setReproduce,
 		setOverpopulate: setOverpopulate,
 		setWrap: setWrap,
-		setRatio: setRatio
+		setRatio: setRatio,
+		setRules: setRules
 	}
 
 });

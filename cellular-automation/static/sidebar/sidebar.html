@@ -26,6 +26,7 @@
 					</form>
 				</td>
 				<td>
+					<label class="pull-left">More Dead</label><label class="pull-right">More Live</label>
 					<input type="range" min="1" max="99" value="25" class="slider" ng-model="vm.ratio" ng-change="vm.setRatio()">
 				</td>
 			</tr>
@@ -38,35 +39,25 @@
 			</tr>
 			<tr>
 				<td>
-					Starvation:
-				</td>
-				<td>
-					Fewer than <input type="number" name="starve" min="0" max="{{vm.reproduceValue}}" ng-change="vm.starve()"
-					ng-model="vm.starveValue"> neighbors
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Reproduction:
-				</td>
-				<td>Exactly <input type="number" name="reproduce" min="{{vm.starveValue}}" max="{{vm.overpopulateValue}}" ng-change="vm.reproduce()" ng-model="vm.reproduceValue"> neighbors
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Overpopulation:
-				</td>
-				<td>
-					More than <input type="number" name="overpopulate" min="{{vm.reproduceValue}}" max="8" ng-change="vm.overpopulate()" ng-model="vm.overpopulateValue"> neighbors
-				</td>
-			</tr>
-			<tr>
-				<td>
 					Wrap:
 				</td> 
 				<td>
 					<input class="checkbox" type="checkbox" ng-model="vm.wrap" ng-init="checked=true" ng-change="vm.setWrap()">
 				</td>
+			</tr>			
+		</tbody>
+	</table>
+	<table class="table">
+		<thead>
+			<th style="max-width:5em;">Neighbor Count</th><th>Birth</th><th>Survive</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="n in vm.neighbors track by $index">
+				<td align="center" style="max-width:5em;">{{ this.$index }}</td>
+				<td><input type="checkbox" align="center" ng-model="vm.neighbors[this.$index]['birth']" 
+					ng-change="vm.updateRules()" ng-checked="this.$index == 3"></td>
+				<td><input type="checkbox" align="center" ng-model="vm.neighbors[this.$index]['survive']" 
+					ng-change="vm.updateRules()" ng-checked="(this.$index == 2) || (this.$index == 3)"><td/>
 			</tr>
 		</tbody>
 	</table>

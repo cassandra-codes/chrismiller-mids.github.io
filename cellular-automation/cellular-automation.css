@@ -14,8 +14,8 @@ body {
 
 
 .cell {
-	height: 8px;
-	width: 8px;
+	height: 6px;
+	width: 6px;
 }
 
 td {
@@ -24,7 +24,7 @@ td {
 }
 
 .edit {
-	border: 0.5px solid #EEE;
+	border: 0.25px solid #EEE;
 }
 
 .edit:hover {

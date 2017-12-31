@@ -1,8 +1,6 @@
 angular.module('grid').controller('gridCtrl', function($interval, gridService) {
 	var vm = this;
 
-	vm.row_size = 100;
-	vm.column_size = 100;
 	vm.rows = gridService.getCells;
 	vm.getEditMode = true;
 
@@ -15,7 +13,7 @@ angular.module('grid').controller('gridCtrl', function($interval, gridService) {
 			if (gridService.isRunning()) {
 				gridService.generate();	
 			}
-		}, 150);
+		}, 130);
 	}
 	
 	function init() {

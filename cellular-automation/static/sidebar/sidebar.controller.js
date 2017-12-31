@@ -9,7 +9,17 @@ angular.module('sidebar').controller('sidebarCtrl', function(gridService) {
 	vm.running = false;
 	vm.runText = "Start";
 
-	vm.ratio = 0.25;
+	vm.ratio = 25;
+
+	vm.neighbors = [];
+
+	for (var i = 0; i < 9; i++) {
+		vm.neighbors.push({"birth": false, "survive": false});
+	}
+
+	vm.neighbors[2]["survive"] = true
+	vm.neighbors[3]["survive"] = true
+	vm.neighbors[3]["birth"] = true
 
 	vm.play = function() {
 		vm.running = !vm.running;
@@ -56,6 +66,10 @@ angular.module('sidebar').controller('sidebarCtrl', function(gridService) {
 	vm.setRatio = function() {
 		gridService.setRatio(vm.ratio * 0.01);
 		gridService.init();
+	}
+
+	vm.updateRules = function() {
+		gridService.setRules(vm.neighbors);
 	}
 
 });
